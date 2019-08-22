@@ -70,7 +70,7 @@ class Manager extends Emploee {
 
     removeDeveloper(developer) {
         let removeId = this.developers.indexOf(developer);
-        this.developers.splice(removeId);
+        this.developers.splice(removeId, 1);
     }
 
 
