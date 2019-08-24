@@ -86,15 +86,15 @@ class Developer extends Emploee {
         this.manager = {};
     }
 
-    setManager(manager, oldManager) {
-        this.manager = manager;
-        manager.developers.push(this);
-        if (typeof oldManager !== "undefined") {
-            let removeId = oldManager.developers.indexOf(this);
+    setManager(manager) {
+        if (this.manager !== {}) {
+            let removeId = this.manager.developers.indexOf(this);
             if (removeId !== -1) {
-                oldManager.developers.splice(removeId, 1);
+                this.manager.developers.splice(removeId, 1);
             }
         }
+        this.manager = manager;
+        manager.developers.push(this);
     }
 
     unsetManager() {
@@ -115,7 +115,7 @@ let d2 = new Developer('Illia Dev', 29, '01/01/1990', 40, 'Developers');
 let d3 = new Developer('Boris Dev', 30, '01/01/1989', 40, 'Developers');
 
 m1.addDeveloper(d1);
-d1.setManager(m2, m1);
+d1.setManager(m2);
 m2.removeDeveloper(d2);
 m3.addDeveloper(d3);
 d3.unsetManager();
