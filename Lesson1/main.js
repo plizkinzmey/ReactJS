@@ -1,39 +1,39 @@
 // Урок 1
 
-// // Задание 1
+// Задание 1
 
-// function loop(times = 0, callback = null) {
-//     if (typeof callback === 'function') {
-//         for (i = 0; i < times; i++) {
-//             callback();
-//         }
-//     }
-// }
-// loop(3, function () {
-//     console.log('callback вызван');
-// });
+function loop(times = 0, callback = null) {
+    if (typeof callback === 'function') {
+        for (i = 0; i < times; i++) {
+            callback();
+        }
+    }
+}
+loop(3, function () {
+    console.log('callback вызван');
+});
 
 
-// // Задание 2 - Площадь треугольника
+// Задание 2 - Площадь треугольника
 
-// function calculateAria(a, h) {
-//     // a - основание треугольника
-//     // h - высота треугольника
-//     // s - площадь треугольника
-//     const f = 'triangle';
-//     let s = (a * 0.5) * h;
-//     const obj = {
-//         area: s,
-//         figure: f,
-//         input: {
-//             osnovanie: a,
-//             visota: h
-//         }
-//     };
-//     console.log(obj);
-// }
+function calculateAria(a, h) {
+    // a - основание треугольника
+    // h - высота треугольника
+    // s - площадь треугольника
+    const f = 'triangle';
+    let s = (a * 0.5) * h;
+    const obj = {
+        area: s,
+        figure: f,
+        input: {
+            osnovanie: a,
+            visota: h
+        }
+    };
+    console.log(obj);
+}
 
-// calculateAria(5, 6);
+calculateAria(5, 6);
 
 // Задание 3
 
@@ -66,9 +66,9 @@ class Manager extends Emploee {
         this.developers = [];
     }
 
-    addDeveloper(developer, manager) {
+    addDeveloper(developer) {
         this.developers.push(developer);
-        developer.manager = manager;
+        developer.manager = this;
     }
 
     removeDeveloper(developer) {
@@ -86,11 +86,11 @@ class Developer extends Emploee {
         this.manager = {};
     }
 
-    setManager(manager, developer, oldManager) {
+    setManager(manager, oldManager) {
         this.manager = manager;
-        manager.developers.push(developer);
+        manager.developers.push(this);
         if (typeof oldManager !== "undefined") {
-            let removeId = oldManager.developers.indexOf(developer);
+            let removeId = oldManager.developers.indexOf(this);
             if (removeId !== -1) {
                 oldManager.developers.splice(removeId, 1);
             }
@@ -98,30 +98,31 @@ class Developer extends Emploee {
     }
 
     unsetManager() {
+        let removeId = this.manager.developers.indexOf(this);
+        if (removeId !== -1) {
+            this.manager.developers.splice(removeId, 1);
+        }
         this.manager = {};
     }
 }
 
 let m1 = new Manager('Alexandr', 28, '01/01/1991', 40, 'Managers');
 let m2 = new Manager('Illia', 29, '01/01/1990', 40, 'Managers');
+let m3 = new Manager('Boris Dev', 30, '01/01/1989', 40, 'Managers');
 
 let d1 = new Developer('Alexandr Dev', 28, '01/01/1991', 40, 'Developers');
 let d2 = new Developer('Illia Dev', 29, '01/01/1990', 40, 'Developers');
 let d3 = new Developer('Boris Dev', 30, '01/01/1989', 40, 'Developers');
 
-// m1.addDeveloper(d1);
-// m1.addDeveloper(d2);
-// m2.addDeveloper(d3);
-d1.setManager(m1, d1);
-d1.setManager(m2, d1, m1);
-// d2.setManager(m1);
-// d3.setManager(m2);
-// m1.removeDeveloper(d2);
-// d2.unsetManager();
-// m1.addDeveloper(d1,m1);
+m1.addDeveloper(d1);
+d1.setManager(m2, m1);
+m2.removeDeveloper(d2);
+m3.addDeveloper(d3);
+d3.unsetManager();
 
 console.log(m1);
 console.log(m2);
+console.log(m3);
 console.log(d1);
 console.log(d2);
 console.log(d3);
