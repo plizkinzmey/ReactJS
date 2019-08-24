@@ -3,7 +3,7 @@
 // Задание 1
 
 function loop(times = 0, callback = null) {
-
+if (typeof callback === 'function') {
     for (i = 0; i < times; i++) {
         callback();
     }
