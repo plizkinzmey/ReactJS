@@ -1,2 +1,4 @@
 .vscode/launch.json
 workspace.code-workspace
+node_modules/
+
