@@ -3,14 +3,16 @@
 // Задание 1
 
 function loop(times = 0, callback = null) {
-if (typeof callback === 'function') {
-    for (i = 0; i < times; i++) {
-        callback();
+    if (typeof callback === 'function') {
+        for (i = 0; i < times; i++) {
+            callback();
+        }
     }
 }
 loop(3, function () {
     console.log('callback вызван');
 });
+
 
 // Задание 2 - Площадь треугольника
 
@@ -70,10 +72,10 @@ class Manager extends Emploee {
 
     removeDeveloper(developer) {
         let removeId = this.developers.indexOf(developer);
-        this.developers.splice(removeId, 1);
+        if (removeId !== -1) {
+            this.developers.splice(removeId, 1);
+        }
     }
-
-
 }
 
 class Developer extends Emploee {
@@ -92,12 +94,12 @@ class Developer extends Emploee {
     }
 }
 
-let m1 = new Manager ('Alexandr', 28, '01/01/1991', 40, 'Managers');
-let m2 = new Manager ('Illia', 29, '01/01/1990', 40, 'Managers');
+let m1 = new Manager('Alexandr', 28, '01/01/1991', 40, 'Managers');
+let m2 = new Manager('Illia', 29, '01/01/1990', 40, 'Managers');
 
-let d1 = new Developer ('Alexandr Dev', 28, '01/01/1991', 40, 'Developers');
-let d2 = new Developer ('Illia Dev', 29, '01/01/1990', 40, 'Developers');
-let d3 = new Developer ('Boris Dev', 30, '01/01/1989', 40, 'Developers');
+let d1 = new Developer('Alexandr Dev', 28, '01/01/1991', 40, 'Developers');
+let d2 = new Developer('Illia Dev', 29, '01/01/1990', 40, 'Developers');
+let d3 = new Developer('Boris Dev', 30, '01/01/1989', 40, 'Developers');
 
 m1.addDeveloper(d1);
 m1.addDeveloper(d2);
@@ -113,6 +115,3 @@ console.log(m2);
 console.log(d1);
 console.log(d2);
 console.log(d3);
-
-
-
