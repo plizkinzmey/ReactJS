@@ -126,3 +126,14 @@ console.log(m3);
 console.log(d1);
 console.log(d2);
 console.log(d3);
+
+// Задание 4
+
+const promiseArray = [];
+
+for(let i=1; i<11; i++) {
+    promiseArray[i] = new Promise(function (resolve, reject) {
+        resolve($.getJSON('https://jsonplaceholder.typicode.com/users/' +i, function (data) {}));
+    });
+};
+Promise.all(promiseArray).then(result => console.log(result));
