@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Menu from './Components/Menu';
+import Menu from './components/menu';
 import bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ReactBootstrap from 'react-bootstrap';
+import Login from './components/login';
 
 class App extends React.Component {
   render() {
@@ -33,16 +33,12 @@ class App extends React.Component {
         href: "#",
         hrefClass: "nav-link nav-link-top",
         title: "ВАКАНСИИ"
-      }, {
-        liClass: "nav-item",
-        href: "#",
-        hrefClass: "nav-link nav-link-top",
-        title: "ВХОД"
       }
     ];
 
     return <div className="container-fluid">
       <Menu items={menuItems}/>
+      <Login/>
     </div>
   }
 }
