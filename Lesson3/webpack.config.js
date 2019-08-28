@@ -53,9 +53,9 @@ const path = require('path'),
                 filename: 'index.html'
             }),
 
-            // new miniCssExtractPlugin ({
-            //     template: path.resolve(__dirname, 'src', 'style.css'),
-            //     filename: 'style.css'
-            // })
+            new miniCssExtractPlugin ({
+                template: path.resolve(__dirname, 'src', 'style.css'),
+                filename: 'style.css'
+            })
         ],
     };
