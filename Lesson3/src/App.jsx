@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Menu from './Components/Menu';
 import bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReactBootstrap from 'react-bootstrap';
 
 class App extends React.Component {
   render() {
