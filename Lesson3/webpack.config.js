@@ -4,10 +4,10 @@ const path = require('path'),
     uglifyJsPligin = require('uglifyjs-webpack-plugin');
 
     module.exports = {
-        entry: path.resolve(__dirname,'src','index.js'),
+        entry: path.resolve(__dirname,'src','App.jsx'),
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'bundle.js'
+            filename: 'main.js'
         },
         devServer: {
             historyApiFallback: true,
@@ -52,5 +52,10 @@ const path = require('path'),
                 template: path.resolve(__dirname, 'src', 'index.html'),
                 filename: 'index.html'
             }),
+
+            // new miniCssExtractPlugin ({
+            //     template: path.resolve(__dirname, 'src', 'style.css'),
+            //     filename: 'style.css'
+            // })
         ],
     };

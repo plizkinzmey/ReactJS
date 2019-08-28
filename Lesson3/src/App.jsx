@@ -1,16 +1,47 @@
-import React, {Component} from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Menu from './Components/Menu';
 
-// import './style.css';
+class App extends React.Component {
+  render() {
+    const menuItems = [
+      {
+        liClass: "nav-item",
+        href: "#",
+        hrefClass: "nav-link nav-link-top",
+        title: "КУРСЫ"
+      }, {
+        liClass: "nav-item",
+        href: "#",
+        hrefClass: "nav-link nav-link-top",
+        title: "ПРЕПОДАВАТЕЛИ"
+      }, {
+        liClass: "nav-item",
+        href: "#",
+        hrefClass: "nav-link nav-link-top",
+        title: "ОТЗЫВЫ"
+      }, {
+        liClass: "nav-item",
+        href: "#",
+        hrefClass: "nav-link nav-link-top",
+        title: "КОНТАКТЫ"
+      }, {
+        liClass: "nav-item",
+        href: "#",
+        hrefClass: "nav-link nav-link-top",
+        title: "ВАКАНСИИ"
+      }, {
+        liClass: "nav-item",
+        href: "#",
+        hrefClass: "nav-link nav-link-top",
+        title: "ВХОД"
+      }
+    ];
 
-
-class App extends Component {
-    render() {
-        return (
-            <h1>Hello React</h1>
-        );
-    }
+    return <div className="container-fluid">
+      <Menu items={menuItems}/>
+    </div>
+  }
 }
-
-
-
-export default App;
+ReactDOM.render(
+  <App/>, document.querySelector('#root'));
