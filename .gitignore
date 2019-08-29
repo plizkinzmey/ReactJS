@@ -1,3 +1,5 @@
 .vscode/launch.json
 workspace.code-workspace
-Lesson2/node_modules
+node_modules
+dist
+Lesson2
