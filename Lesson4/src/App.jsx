@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Menu from './components/menu';
+import Menu from './app/components/menu';
 import bootstrap from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-// import Login from './components/login';
 
 
 class App extends React.Component {
