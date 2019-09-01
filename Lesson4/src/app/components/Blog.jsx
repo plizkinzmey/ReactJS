@@ -40,10 +40,7 @@ export class Blog extends Component {
     }
   
   render() {
-    const postItems = this
-      .state
-      .postItems
-      .map((item, index) => {
+    const postItems = this.state.postItems.map((item, index) => {
         return <Post
           key={index}
           HeaderPost={item.HeaderPost}
