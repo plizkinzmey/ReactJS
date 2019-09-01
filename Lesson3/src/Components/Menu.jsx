@@ -4,7 +4,7 @@ import MenuItem from './menuItem';
 export default class Menu extends React.Component {
   render() {
 
-    const items = this
+    const items = this.props.items.map(...
       .props
       .items
       .map((item, index) => {
