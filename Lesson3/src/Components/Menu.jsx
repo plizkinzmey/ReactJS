@@ -4,10 +4,7 @@ import MenuItem from './menuItem';
 export default class Menu extends React.Component {
   render() {
 
-    const items = this.props.items.map(...
-      .props
-      .items
-      .map((item, index) => {
+    const items = this.props.items.map((item, index) => {
         return <MenuItem
           key={index}
           liClass={item.liClass}
