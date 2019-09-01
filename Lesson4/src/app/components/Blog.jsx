@@ -12,10 +12,10 @@ export class Blog extends Component {
     this.userRef = React.createRef();
     this.headerPostRef = React.createRef();
     this.postRef = React.createRef();
-    this.addPost = this
-      .addPost
-      .bind(this);
+    this.addPost = this.addPost.bind(this);
   }
+
+ 
 
   addPost() {
     const userName = this.userRef.current.value;
@@ -28,17 +28,19 @@ export class Blog extends Component {
       this.userRef.current.value = "";
       this.headerPostRef.current.value = "";
       this.postRef.current.value = "";
+      console.log({postItems});
     } else return null;
    
   }
 
+ 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.postItems !== nextProps.postItems) {
-      return {blogItems: nextProps.postItems};
+    if (nextProps.postItems !== prevState.items) {
+      return {postItems: nextProps.postItems};
     } else 
       return null;
     }
-  
+
   render() {
     const postItems = this.state.postItems.map((item, index) => {
         return <Post
