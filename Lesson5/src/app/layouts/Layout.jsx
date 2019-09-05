@@ -28,10 +28,10 @@ export class Layouts extends Component {
               {this.props.children}
             </div>
           </div>
-          <footer className="card-footer">
-            &copy; 2019
-          </footer>
         </div>
+        <footer className="card-footer">
+          &copy; 2019
+        </footer>
       </div>
     );
   }

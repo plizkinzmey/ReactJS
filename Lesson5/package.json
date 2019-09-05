@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development --wath",
-    "start": "webpack-dev-server --mode development --open"
+    "start": "webpack-dev-server --open"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +30,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
     "popper": "^1.0.1",
@@ -39,7 +40,7 @@
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
-    "react-router": "^5.0.1"
+    "react-router": "^3.2.4"
   },
   "description": ""
 }
