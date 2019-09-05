@@ -18,6 +18,12 @@ export class Layouts extends Component {
           <MenuItem href="/" active={this.isActive("/")}>
             Главная
           </MenuItem>
+          <MenuItem href="/posts" active={this.isActive("/posts")}>
+            Посты
+          </MenuItem>
+          <MenuItem href="/comments" active={this.isActive("/comments")}>
+            Комментарии
+          </MenuItem>
           <MenuItem href="/users" active={this.isActive("/users")}>
             Пользователи
           </MenuItem>
