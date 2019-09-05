@@ -5,7 +5,7 @@ export class User extends Component {
   render() {
     const {id, email, phone, website, username} = this.props;
     return (
-      <div className="card border-secondary mb-3">
+      <div className="card border-secondary mb-3 mt-3">
         <div className="card-header">
           <Link to={`/users/${id}`}>
             {username}

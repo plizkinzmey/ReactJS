@@ -21,16 +21,18 @@ export class PostList extends Component {
       });
     return (
       <div>
-          <h1>Посты</h1>
-          {posts}
+        <h1>Посты</h1>
+        {posts}
       </div>
     );
   }
 
   componentDidMount() {
-    axios.get('http://jsonplaceholder.typicode.com/posts').then(response => {
-      this.setState({posts: response.data})
-    })
+    axios
+      .get('http://jsonplaceholder.typicode.com/posts')
+      .then(response => {
+        this.setState({posts: response.data})
+      })
   }
 }
 

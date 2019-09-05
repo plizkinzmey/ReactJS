@@ -23,6 +23,9 @@ ReactDOM.render(
     <Route path="posts" component={Posts}>
       <Route path=":postId" component={Post}/>
     </Route>
+    <Route path="comments" component={Comments}>
+      <Route path=":commentId" component={Comment}/>
+    </Route>
     <Route path="*" component={PageNotFound}></Route>
   </Route>
 </Router>, document.getElementById('root'));
