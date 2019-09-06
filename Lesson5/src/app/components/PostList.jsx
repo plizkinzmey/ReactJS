@@ -11,7 +11,11 @@ export class PostList extends Component {
   }
   render() {
     if (!this.state.posts.length) {
-      return null;
+      return (
+        <div className="d-flex justify-content-center my-3">
+          <div className="spinner-border" role="status"></div>
+        </div>
+      );
     }
     const posts = this
       .state

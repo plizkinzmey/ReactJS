@@ -11,7 +11,11 @@ export class CommentList extends Component {
   }
   render() {
     if (!this.state.comments.length) {
-      return null
+      return (
+        <div className="d-flex justify-content-center my-3">
+          <div className="spinner-border" role="status"></div>
+        </div>
+      )
     }
     const comments = this
       .state

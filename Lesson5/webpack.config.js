@@ -4,6 +4,7 @@ const path = require('path'),
     uglifyJsPligin = require('uglifyjs-webpack-plugin');
 
     module.exports = {
+        context: path.resolve(__dirname, 'src'),
         entry: path.resolve(__dirname,'src','App.jsx'),
         output: {
             path: path.resolve(__dirname, 'dist'),
