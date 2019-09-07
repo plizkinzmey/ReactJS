@@ -20,7 +20,7 @@ export class Comment extends Component {
   }
   componentDidMount() {
     axios
-      .get(`http://jsonplaceholder.typicode.com/comments/${this.props.params.commentId}`)
+      .get(`http://jsonplaceholder.typicode.com/comments/${this.props.match.params.commentId}`)
       .then(response => {
         const comment = response.data;
         this.setState({comment});

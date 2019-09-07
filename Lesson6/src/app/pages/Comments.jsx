@@ -6,9 +6,7 @@ export class Comments extends Component {
   render() {
     return (
       <div>
-        {(!this.props.children)
-          ? <CommentList/>
-          : (this.props.children)}
+        <CommentList/>
       </div>
     );
   }

@@ -6,9 +6,7 @@ export class Posts extends Component {
   render() {
     return (
       <div>
-        {(!this.props.children)
-          ? <PostList/>
-          : (this.props.children)}
+        <PostList/>
       </div>
     );
   }

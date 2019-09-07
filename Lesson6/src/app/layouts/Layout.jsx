@@ -4,12 +4,9 @@ import MenuItem from '../components/MenuItem';
 import {Route, Switch} from 'react-router-dom';
 
 import Main from '../pages/Main';
-import Users from '../pages/Users';
-import User from '../pages/User';
-import Post from '../pages/Post';
-import Posts from '../pages/Posts';
-import Comment from '../pages/Comment';
-import Comments from '../pages/Comments';
+import UsersPage from '../pages/UsersPage';
+import PostsPage from '../pages/PostsPage';
+import CommentsPage from '../pages/CommentsPage';
 import PageNotFound from '../pages/PageNotFound';
 
 export class Layouts extends Component {
@@ -43,12 +40,9 @@ export class Layouts extends Component {
             <div className="col-12">
               <Switch>
                 <Route exact path="/" component={Main}/>
-                <Route path="/users" component={Users}/>
-                <Route path="/users/:userId" component={User}/>
-                <Route path="/posts" component={Posts}/>
-                <Route path="/posts/:postId" component={Post}/>
-                <Route path="/comments" component={Comments}/>
-                <Route path="/comments/:commentId" component={Comment}/>
+                <Route path="/users" component={UsersPage}/>
+                <Route path="/posts" component={PostsPage}/>
+                <Route path="/comments" component={CommentsPage}/>
                 <Route path="*" component={PageNotFound}/>
               </Switch>
             </div>
