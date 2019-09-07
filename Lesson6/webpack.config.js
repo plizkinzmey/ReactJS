@@ -5,7 +5,7 @@ const path = require('path'),
 
     module.exports = {
         context: path.resolve(__dirname, 'src'),
-        entry: path.resolve(__dirname,'src','App.jsx'),
+        entry: path.resolve(__dirname,'src','index.jsx'),
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'main.js'
