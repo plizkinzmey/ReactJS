@@ -5,27 +5,35 @@ import PostStore from '../stores/postStore';
 import {Form, Card, Button} from 'react-bootstrap';
 
 export class PostList extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       posts: []
     };
-    this.onPostChange = this.onPostChange.bind(this);
-    this.newPost = this.newPost.bind(this);
+    this.onPostChange = this
+      .onPostChange
+      .bind(this);
+    this.newPost = this
+      .newPost
+      .bind(this);
 
     this.headerPostRef = React.createRef();
     this.postRef = React.createRef();
+
+    let ismount = false;
   }
 
   onPostChange() {
-    const posts = PostStore.posts;
-    this.setState({posts});
-
+    if (this.ismount) {
+      const posts = PostStore.posts;
+      this.setState({posts});
+    }
   }
 
   newPost() {
-    const id = this.state.posts.length +1;
-    const userId =3;
+    const id = this.state.posts.length + 1;
+    const userId = 3;
     const headerPost = this.headerPostRef.current.value;
     const post = this.postRef.current.value;
 
@@ -36,7 +44,6 @@ export class PostList extends Component {
     } else 
       return null;
     }
-
   
   render() {
     if (!this.state.posts.length) {
@@ -83,8 +90,16 @@ export class PostList extends Component {
   }
 
   componentDidMount() {
-    getPosts();
-    PostStore.on('change', this.onPostChange);
+    this.ismount = true;
+    if (this.ismount) {
+      getPosts();
+      PostStore.on('change', this.onPostChange);
+    } else 
+      null
+  }
+
+  componentWillUnmount() {
+    this.ismount = false;
   }
 }
 

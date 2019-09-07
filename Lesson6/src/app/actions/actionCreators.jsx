@@ -1,11 +1,16 @@
 import axios from 'axios';
 import dispatcher from '../dispatcher';
-import { ADD_POST, GET_POSTS, GET_COMMENTS, GET_USERS } from './actions';
+import {ADD_POST, GET_POSTS, GET_COMMENTS, GET_USERS} from './actions';
 
 export function addPost(title, userId, body, id) {
   const action = {
     type: ADD_POST,
-    data: { title, userId, body, id}
+    data: {
+      title,
+      userId,
+      body,
+      id
+    }
   }
   dispatcher.dispatch(action);
 }
@@ -17,7 +22,7 @@ export function getPosts() {
       const data = response.data;
       const action = {
         type: GET_POSTS,
-        data:data
+        data: data
       };
       dispatcher.dispatch(action);
     })
@@ -30,7 +35,7 @@ export function getComments() {
       const data = response.data;
       const action = {
         type: GET_COMMENTS,
-        data:data
+        data: data
       };
       dispatcher.dispatch(action);
     })
@@ -43,7 +48,7 @@ export function getUsers() {
       const data = response.data;
       const action = {
         type: GET_USERS,
-        data:data
+        data: data
       };
       dispatcher.dispatch(action);
     })

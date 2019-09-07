@@ -9,13 +9,18 @@ export class CommentList extends Component {
     this.state = {
       comments: []
     }
-    this.onCommentChange = this.onCommentChange.bind(this);
+    this.onCommentChange = this
+      .onCommentChange
+      .bind(this);
+    let ismount = false;
   }
 
   onCommentChange() {
-    const comments = CommentStore.comments;
-    this.setState({comments});
-
+    if (this.ismount) {
+      const comments = CommentStore.comments;
+      this.setState({comments});
+    } else 
+      null
   }
 
   render() {
@@ -29,7 +34,7 @@ export class CommentList extends Component {
     const comments = this
       .state
       .comments
-      .map((comment, index) => {
+      .map(comment => {
         return <Comment key={comment.id} {...comment}/>
       });
     return (
@@ -41,9 +46,17 @@ export class CommentList extends Component {
   }
 
   componentDidMount() {
-    getComments();
-    CommentStore.on('change', this.onCommentChange);
+    this.ismount = true;
+    if (this.ismount) {
+      getComments();
+      CommentStore.on('change', this.onCommentChange);
+    } else null
+
   }
+
+  componentWillUnmount() {
+    this.ismount = false;
   }
+}
 
 export default CommentList;

@@ -14,8 +14,3 @@ export class App extends Component {
 }
 
 export default App;
-
-// import React, {Component} from 'react'; import ReactDOM from 'react-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css'; import {BrowserRouter, Route,
-// Switch, HashRouter} from 'react-router-dom'; ReactDOM.render(
-// <BrowserRouter>  <App/> </BrowserRouter>, document.querySelector('#root'));
