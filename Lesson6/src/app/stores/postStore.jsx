@@ -1,5 +1,6 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events'
+import {ADD_POST, GET_POSTS} from '../actions/actions'
 
 class postStore extends EventEmitter {
   constructor() {
@@ -29,10 +30,10 @@ class postStore extends EventEmitter {
 
   handleAction(action) {
     switch (action.type) {
-      case 'ADD_POST':
+      case ADD_POST:
         this.addPost(action.data);
         break;
-      case 'GET_POSTS':
+      case GET_POSTS:
         this.getPosts(action.data);
         break;
     }

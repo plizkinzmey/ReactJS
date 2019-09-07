@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Comment from './Comment';
-import axios from 'axios';
+import {getComments} from '../actions/actionCreators'
+import CommentStore from '../stores/commentStore';
 
 export class CommentList extends Component {
   constructor(props) {
@@ -8,7 +9,15 @@ export class CommentList extends Component {
     this.state = {
       comments: []
     }
+    this.onCommentChange = this.onCommentChange.bind(this);
   }
+
+  onCommentChange() {
+    const comments = CommentStore.comments;
+    this.setState({comments});
+
+  }
+
   render() {
     if (!this.state.comments.length) {
       return (
@@ -30,13 +39,11 @@ export class CommentList extends Component {
       </div>
     );
   }
+
   componentDidMount() {
-    axios
-      .get(`http://jsonplaceholder.typicode.com/comments`)
-      .then(response => {
-        this.setState({comments: response.data})
-      })
+    getComments();
+    CommentStore.on('change', this.onCommentChange);
   }
-}
+  }
 
 export default CommentList;
