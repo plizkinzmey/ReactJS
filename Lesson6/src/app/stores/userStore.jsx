@@ -1,6 +1,5 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
-import {GET_USERS} from '../actions/actions'
 
 class userStore extends EventEmitter {
   constructor() {

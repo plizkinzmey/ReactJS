@@ -1,6 +1,5 @@
 import dispatcher from '../dispatcher';
 import {EventEmitter} from 'events';
-import {GET_COMMENTS} from '../actions/actions'
 
 class commentStore extends EventEmitter {
   constructor() {
