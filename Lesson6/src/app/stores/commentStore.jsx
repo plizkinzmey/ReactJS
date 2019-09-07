@@ -22,11 +22,7 @@ class commentStore extends EventEmitter {
   }
 
   handleAction(action) {
-    switch (action.type) {
-      case GET_COMMENTS:
-        this.getComments(action.data);
-        break;
-    }
+    this.getComments(action.data);
   }
 }
 

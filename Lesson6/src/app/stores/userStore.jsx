@@ -22,11 +22,7 @@ class userStore extends EventEmitter {
   }
 
   handleAction(action) {
-    switch (action.type) {
-      case GET_USERS:
-        this.getUsers(action.data);
-        break;
-    }
+    this.getUsers(action.data);
   }
 }
 
