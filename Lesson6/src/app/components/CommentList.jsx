@@ -12,7 +12,7 @@ export class CommentList extends Component {
     this.onCommentChange = this
       .onCommentChange
       .bind(this);
-    let ismount = false;
+    this.ismount = false;
   }
 
   onCommentChange() {
