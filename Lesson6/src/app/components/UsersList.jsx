@@ -12,15 +12,11 @@ export class UsersList extends Component {
     this.onUserChange = this
       .onUserChange
       .bind(this);
-    let ismount = false;
   }
 
   onUserChange() {
-    if (this.ismount) {
-      const users = UserStore.users;
-      this.setState({users});
-    }
-
+    const users = UserStore.users;
+    this.setState({users});
   }
 
   render() {
@@ -46,14 +42,11 @@ export class UsersList extends Component {
   }
 
   componentDidMount() {
-    this.ismount = true;
-    if (this.ismount) {
-      getUsers();
-      UserStore.on('change', this.onUserChange);
-    }
+    getUsers();
+    UserStore.on('change', this.onUserChange);
   }
   componentWillUnmount() {
-    this.ismount = false;
+    UserStore.removeListener('change', this.onUserChange)
   }
 }
 

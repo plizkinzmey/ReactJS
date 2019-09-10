@@ -12,15 +12,11 @@ export class CommentList extends Component {
     this.onCommentChange = this
       .onCommentChange
       .bind(this);
-    this.ismount = false;
   }
 
   onCommentChange() {
-    if (this.ismount) {
-      const comments = CommentStore.comments;
-      this.setState({comments});
-    } else 
-      null
+    const comments = CommentStore.comments;
+    this.setState({comments});
   }
 
   render() {
@@ -46,16 +42,12 @@ export class CommentList extends Component {
   }
 
   componentDidMount() {
-    this.ismount = true;
-    if (this.ismount) {
-      getComments();
-      CommentStore.on('change', this.onCommentChange);
-    } else null
-
+    getComments();
+    CommentStore.on('change', this.onCommentChange);
   }
 
   componentWillUnmount() {
-    this.ismount = false;
+    CommentStore.removeListener('change', this.onCommentChange)
   }
 }
 

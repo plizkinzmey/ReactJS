@@ -25,10 +25,8 @@ export class PostList extends Component {
   }
 
   onPostChange() {
-    if (this.ismount) {
-      const posts = PostStore.posts;
-      this.setState({posts});
-    }
+    const posts = PostStore.posts;
+    this.setState({posts});
   }
 
   newPost() {
@@ -90,16 +88,12 @@ export class PostList extends Component {
   }
 
   componentDidMount() {
-    this.ismount = true;
-    if (this.ismount) {
-      getPosts();
-      PostStore.on('change', this.onPostChange);
-    } else 
-      null
+    getPosts();
+    PostStore.on('change', this.onPostChange)
   }
 
   componentWillUnmount() {
-    this.ismount = false;
+    PostStore.removeListener('change', this.onPostChange)
   }
 }
 
