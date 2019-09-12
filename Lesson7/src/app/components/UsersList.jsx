@@ -1,53 +1,38 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import User from './User';
-import {getUsers} from '../actions/actionCreators'
-import UserStore from '../stores/userStore';
+import {fetchUsers} from '../actions/userActions';
 
 export class UsersList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    }
-    this.onUserChange = this
-      .onUserChange
-      .bind(this);
-  }
-
-  onUserChange() {
-    const users = UserStore.users;
-    this.setState({users});
-  }
-
   render() {
-    if (!this.state.users.length) {
+    const users = this.props;
+    if (!users.users.length) {
       return (
         <div className="d-flex justify-content-center my-3">
           <div className="spinner-border" role="status"></div>
         </div>
       );
     }
-    const users = this
-      .state
-      .users
-      .map((user, index) => {
-        return <User key={user.id} {...user}/>
-      });
+    const mappedUsers = users.users.map(user => {
+      return <User key={user.id} {...user}/>
+    });
     return (
       <div>
         <h1>Пользователи</h1>
-        {users}
+        {mappedUsers}
       </div>
     );
   }
 
   componentDidMount() {
-    getUsers();
-    UserStore.on('change', this.onUserChange);
-  }
-  componentWillUnmount() {
-    UserStore.removeListener('change', this.onUserChange)
+    this
+      .props
+      .dispatch(fetchUsers());
   }
 }
 
-export default UsersList;
+function mapStateToProps(state) {
+  return {users: state.users.users}
+}
+
+export default connect(mapStateToProps)(UsersList);

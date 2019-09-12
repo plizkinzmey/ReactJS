@@ -1,4 +1,4 @@
-export const ADD_POST = 'ADD_POST';
-export const GET_POSTS = 'GET_POSTS';
-export const GET_COMMENTS = 'GET_COMMENTS';
-export const GET_USERS = 'GET_USERS';
+export const ADD_POST = "ADD_POST";
+export const FETCH_USER = "FETCH_USER";
+export const FETCH_POST = "FETCH_POST";
+export const FETCH_COMMENT = "FETCH_COMMENT";

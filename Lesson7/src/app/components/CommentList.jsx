@@ -1,54 +1,39 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Comment from './Comment';
-import {getComments} from '../actions/actionCreators'
-import CommentStore from '../stores/commentStore';
+import {fetchComments} from '../actions/commentActions';
+
 
 export class CommentList extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      comments: []
-    }
-    this.onCommentChange = this
-      .onCommentChange
-      .bind(this);
-  }
-
-  onCommentChange() {
-    const comments = CommentStore.comments;
-    this.setState({comments});
-  }
-
   render() {
-    if (!this.state.comments.length) {
+    const comments = this.props;
+    if (!comments.comments.length) {
       return (
         <div className="d-flex justify-content-center my-3">
           <div className="spinner-border" role="status"></div>
         </div>
-      )
+      );
     }
-    const comments = this
-      .state
-      .comments
-      .map(comment => {
+    const mappedComments = comments.comments.map(comment => {
         return <Comment key={comment.id} {...comment}/>
       });
     return (
       <div>
         <h1>Комментарии</h1>
-        {comments}
+        {mappedComments}
       </div>
     );
   }
 
   componentDidMount() {
-    getComments();
-    CommentStore.on('change', this.onCommentChange);
-  }
-
-  componentWillUnmount() {
-    CommentStore.removeListener('change', this.onCommentChange)
+    this
+      .props
+      .dispatch(fetchComments());
   }
 }
 
-export default CommentList;
+function mapStateToProps(state) {
+  return {comments: state.comments.comments}
+}
+
+export default connect(mapStateToProps)(CommentList);

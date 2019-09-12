@@ -1,58 +1,42 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Post from './Post';
-import {addPost, getPosts} from '../actions/actionCreators'
-import PostStore from '../stores/postStore';
+import {fetchPosts, addPost} from '../actions/postActions'
 import {Form, Card, Button} from 'react-bootstrap';
 
 export class PostList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      posts: []
-    };
-    this.onPostChange = this
-      .onPostChange
-      .bind(this);
-    this.newPost = this
-      .newPost
-      .bind(this);
-
     this.headerPostRef = React.createRef();
     this.postRef = React.createRef();
 
-    let ismount = false;
+    this.addPost.bind(this);
   }
 
-  onPostChange() {
-    const posts = PostStore.posts;
-    this.setState({posts});
-  }
-
-  newPost() {
+  addPost() {
     const id = this.state.posts.length + 1;
     const userId = 3;
-    const headerPost = this.headerPostRef.current.value;
+    const title = this.headerPostRef.current.value;
     const post = this.postRef.current.value;
-
     if (headerPost !== "" && post !== "") {
-      addPost(headerPost, userId, post, id);
-      this.headerPostRef.current.value = "";
-      this.postRef.current.value = "";
+      this
+        .props
+        .dispatch(addPost(title, userId, post, id))
     } else 
       return null;
     }
   
   render() {
-    if (!this.state.posts.length) {
+    const posts = this.props;
+    if (!posts.posts.length) {
       return (
         <div className="d-flex justify-content-center my-3">
           <div className="spinner-border" role="status"></div>
         </div>
       );
     }
-    const posts = this
-      .state
+    const mappedPosts = posts
       .posts
       .map(post => {
         return <Post key={post.id} {...post}/>
@@ -82,19 +66,20 @@ export class PostList extends Component {
             <Button type="submit" variant="primary float-right" onClick={this.newPost}>Опубликовать пост</Button>
           </Form>
         </Card>
-        {posts}
+        {mappedPosts}
       </div>
     );
   }
 
   componentDidMount() {
-    getPosts();
-    PostStore.on('change', this.onPostChange)
-  }
-
-  componentWillUnmount() {
-    PostStore.removeListener('change', this.onPostChange)
+    this
+      .props
+      .dispatch(fetchPosts());
   }
 }
 
-export default PostList
+function mapStateToProps(state) {
+  return {posts: state.posts.posts}
+}
+
+export default connect(mapStateToProps)(PostList);
