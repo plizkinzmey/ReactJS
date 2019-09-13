@@ -14,11 +14,9 @@ export class PostList extends Component {
     this.addPost = this
       .addPost
       .bind(this);
-    this.isLength = false;
   }
 
   addPost() {
-    this.isLength = true;
     console.log(this.isLength);
     const id = 102;
     const userId = 3;
@@ -35,14 +33,12 @@ export class PostList extends Component {
   render() {
     const posts = this.props;
     if (!posts.posts.length) {
-      // this.isLength = true;
       return (
         <div className="d-flex justify-content-center my-3">
           <div className="spinner-border" role="status"></div>
         </div>
       );
     } else {
-      // this.isLength = true;
       const mappedPosts = posts
         .posts
         .map(post => {
@@ -80,11 +76,9 @@ export class PostList extends Component {
   }
 
   componentDidMount() {
-    if (!this.isLength) {
-      this
-        .props
-        .dispatch(fetchPosts());
-    }
+    this
+      .props
+      .dispatch(fetchPosts());
   }
 }
 
