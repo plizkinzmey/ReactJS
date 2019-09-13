@@ -20,8 +20,6 @@ export class PostList extends Component {
 
     this.headerPostRef = React.createRef();
     this.postRef = React.createRef();
-
-    let ismount = false;
   }
 
   onPostChange() {

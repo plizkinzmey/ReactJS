@@ -33,13 +33,7 @@ export default function reducer(state = {
       {
         return {
           ...state,
-          posts: {
-            ...state.posts,
-            title: action.payload,
-            userId: action.payload,
-            body: action.payload,
-            id: action.payload
-          }
+          posts: [action.payload, ...state.posts]
         }
       }
   }
