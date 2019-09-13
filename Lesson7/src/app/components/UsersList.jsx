@@ -13,9 +13,11 @@ export class UsersList extends Component {
         </div>
       );
     }
-    const mappedUsers = users.users.map(user => {
-      return <User key={user.id} {...user}/>
-    });
+    const mappedUsers = users
+      .users
+      .map(user => {
+        return <User key={user.id} {...user}/>
+      });
     return (
       <div>
         <h1>Пользователи</h1>

@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import Comment from './Comment';
 import {fetchComments} from '../actions/commentActions';
 
-
 export class CommentList extends Component {
   render() {
     const comments = this.props;
@@ -14,7 +13,9 @@ export class CommentList extends Component {
         </div>
       );
     }
-    const mappedComments = comments.comments.map(comment => {
+    const mappedComments = comments
+      .comments
+      .map(comment => {
         return <Comment key={comment.id} {...comment}/>
       });
     return (

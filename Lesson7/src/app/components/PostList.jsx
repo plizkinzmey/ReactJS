@@ -16,16 +16,18 @@ export class PostList extends Component {
       .bind(this);
   }
 
-  addPost() {
-    console.log(this.isLength);
-    const id = 102;
+  addPost(event) {
+    event.preventDefault();
+    const id = this.props.posts.length + 1;
     const userId = 3;
     const title = this.headerPostRef.current.value;
     const post = this.postRef.current.value;
     if (title !== "" && post !== "") {
       this
         .props
-        .dispatch(addPost(title, userId, post, id))
+        .dispatch(addPost(title, userId, post, id));
+      this.headerPostRef.current.value = "";
+      this.postRef.current.value = "";
     } else 
       return null;
     }
