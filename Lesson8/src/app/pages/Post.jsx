@@ -21,7 +21,7 @@ export class Post extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://jsonplaceholder.typicode.com/posts/${this.props.match.params.postId}`)
+      .get(`http://jsonplaceholder.typicode.com/posts/${this.props.params.postId}`)
       .then(response => {
         const post = response.data;
         this.setState({post});

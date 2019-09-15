@@ -1,40 +1,42 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import Comment from './Comment';
-import {fetchComments} from '../actions/commentActions';
+import axios from 'axios';
 
 export class CommentList extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      comments: []
+    }
+  }
   render() {
-    const comments = this.props;
-    if (!comments.comments.length) {
+    if (!this.state.comments.length) {
       return (
         <div className="d-flex justify-content-center my-3">
           <div className="spinner-border" role="status"></div>
         </div>
-      );
+      )
     }
-    const mappedComments = comments
+    const comments = this
+      .state
       .comments
-      .map(comment => {
+      .map((comment, index) => {
         return <Comment key={comment.id} {...comment}/>
       });
     return (
       <div>
         <h1>Комментарии</h1>
-        {mappedComments}
+        {comments}
       </div>
     );
   }
-
   componentDidMount() {
-    this
-      .props
-      .dispatch(fetchComments());
+    axios
+      .get(`http://jsonplaceholder.typicode.com/comments`)
+      .then(response => {
+        this.setState({comments: response.data})
+      })
   }
 }
 
-function mapStateToProps(state) {
-  return {comments: state.comments.comments}
-}
-
-export default connect(mapStateToProps)(CommentList);
+export default CommentList;

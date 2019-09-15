@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
 import Menu from '../components/Menu';
 import MenuItem from '../components/MenuItem';
-import {Route, Switch} from 'react-router-dom';
-
-import Main from '../pages/Main';
-import UsersPage from '../pages/UsersPage';
-import PostsPage from '../pages/PostsPage';
-import CommentsPage from '../pages/CommentsPage';
-import PageNotFound from '../pages/PageNotFound';
 
 export class Layouts extends Component {
   constructor(props) {
@@ -38,13 +31,7 @@ export class Layouts extends Component {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <Switch>
-                <Route exact path="/" component={Main}/>
-                <Route path="/users" component={UsersPage}/>
-                <Route path="/posts" component={PostsPage}/>
-                <Route path="/comments" component={CommentsPage}/>
-                <Route path="*" component={PageNotFound}/>
-              </Switch>
+              {this.props.children}
             </div>
           </div>
         </div>

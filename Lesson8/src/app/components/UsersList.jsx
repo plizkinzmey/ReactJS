@@ -1,40 +1,43 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import axios from 'axios';
 import User from './User';
-import {fetchUsers} from '../actions/userActions';
 
 export class UsersList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: []
+    }
+  }
   render() {
-    const users = this.props;
-    if (!users.users.length) {
+    if (!this.state.users.length) {
       return (
         <div className="d-flex justify-content-center my-3">
           <div className="spinner-border" role="status"></div>
         </div>
       );
     }
-    const mappedUsers = users
+    const users = this
+      .state
       .users
-      .map(user => {
+      .map((user, index) => {
         return <User key={user.id} {...user}/>
       });
     return (
       <div>
         <h1>Пользователи</h1>
-        {mappedUsers}
+        {users}
       </div>
     );
   }
 
   componentDidMount() {
-    this
-      .props
-      .dispatch(fetchUsers());
+    axios
+      .get('http://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        this.setState({users: response.data})
+      })
   }
 }
 
-function mapStateToProps(state) {
-  return {users: state.users.users}
-}
-
-export default connect(mapStateToProps)(UsersList);
+export default UsersList;

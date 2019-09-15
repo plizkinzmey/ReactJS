@@ -20,7 +20,7 @@ export class User extends Component {
   }
   componentDidMount() {
     axios
-      .get(`http://jsonplaceholder.typicode.com/users/${this.props.match.params.userId}`)
+      .get(`http://jsonplaceholder.typicode.com/users/${this.props.params.userId}`)
       .then(response => {
         const user = response.data;
         this.setState({user})
