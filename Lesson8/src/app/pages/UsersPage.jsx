@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import pageUser from "./pageUser";
 import pageUsers from "./pageUsers";
 import { Route, Switch } from "react-router-dom";

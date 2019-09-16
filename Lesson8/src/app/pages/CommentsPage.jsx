@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import pageComment from './pageComment';
 import pageComments from './pageComments';
 import {Route, Switch} from 'react-router-dom';

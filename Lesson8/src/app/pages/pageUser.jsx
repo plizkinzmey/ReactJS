@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import User from "../components/User";
 
@@ -13,7 +13,6 @@ const pageUser = props => {
       .then(res => {
         const user = res.data;
         setUser(user);
-        console.log(res.data);
       }).catch(err => {
         console.log(err);
       });

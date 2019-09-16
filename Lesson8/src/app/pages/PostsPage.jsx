@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import pagePost from './pagePost';
 import pagePosts from './pagePosts';
 import {Route, Switch} from 'react-router-dom';
