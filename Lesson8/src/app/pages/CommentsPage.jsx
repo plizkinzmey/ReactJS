@@ -1,22 +1,20 @@
 import React, {Component} from 'react';
-import Comment from './Comment';
-import Comments from './Comments';
+import pageComment from './pageComment';
+import pageComments from './pageComments';
 import {Route, Switch} from 'react-router-dom';
 
 import PageNotFound from '../pages/PageNotFound';
 
-class CommentsPage extends Component {
-  render() {
+const CommentsPage = props => {
     return (
       <div>
         <Switch>
-          <Route exact path="/comments" component={Comments}/>
-          <Route path="/comments/:commentId" component={Comment}/>
+          <Route exact path="/comments" component={pageComments}/>
+          <Route path="/comments/:commentId" component={pageComment}/>
           <Route path="*" component={PageNotFound}/>
         </Switch>
       </div>
     )
-  }
 }
 
 export default CommentsPage;

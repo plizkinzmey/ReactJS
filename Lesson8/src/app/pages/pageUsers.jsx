@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import UsersList from "../components/UsersList";
 
-const Users = props => {
+const pageUsers = props => {
   return (
     <>
       <UsersList />
@@ -9,4 +9,4 @@ const Users = props => {
   );
 };
 
-export default Users;
+export default pageUsers;

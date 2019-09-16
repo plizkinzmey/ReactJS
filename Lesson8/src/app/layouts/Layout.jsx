@@ -11,9 +11,7 @@ import PageNotFound from "../pages/PageNotFound";
 import { Card } from "react-bootstrap";
 
 const Layouts = props => {
-  const brand = "Our blog";
-
-  const inputState = useState("");
+  const brand = "React blog";
 
   const isActive = href => {
     return window.location.pathname === href;

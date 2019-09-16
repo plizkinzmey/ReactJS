@@ -41,19 +41,20 @@ const UsersList = props => {
     setUserWebsite(event.target.value);
   };
   const userAddHandler = () => {
-    setUserList([{ userName, userEmail, userPhone, userWebsite}, ...userList] );
-    axios
-      .post("https://reactjs-9b967.firebaseio.com/users.json", {
-        userName,
-        userEmail,
-        userPhone,
-        userWebsite
-      })
-      .then(res => {
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if(userName != "" && userEmail != "" && userPhone != "" && userWebsite != "") {
+      axios
+        .post("https://reactjs-9b967.firebaseio.com/users.json", {
+          userName,
+          userEmail,
+          userPhone,
+          userWebsite
+        })
+        .then(res => {
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } 
   };
 
   const mappedUserList = userList.map(user => {

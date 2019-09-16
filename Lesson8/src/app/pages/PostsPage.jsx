@@ -1,22 +1,20 @@
 import React, {Component} from 'react';
-import Post from './Post';
-import Posts from './Posts';
+import pagePost from './pagePost';
+import pagePosts from './pagePosts';
 import {Route, Switch} from 'react-router-dom';
 
 import PageNotFound from '../pages/PageNotFound';
 
-class PostsPage extends Component {
-  render() {
+const PostsPage = props => {
     return (
       <div>
         <Switch>
-          <Route exact path="/posts" component={Posts}/>
-          <Route path="/posts/:postId" component={Post}/>
+          <Route exact path="/posts" component={pagePosts}/>
+          <Route path="/posts/:postId" component={pagePost}/>
           <Route path="*" component={PageNotFound}/>
         </Switch>
       </div>
     )
-  }
 }
 
 export default PostsPage;

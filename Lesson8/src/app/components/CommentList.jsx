@@ -1,40 +1,112 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import Comment from './Comment';
-import {fetchComments} from '../actions/commentActions';
+import Comment from "./Comment";
+import React, { Component, useState, useEffect } from "react";
+import { Card, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
-export class CommentList extends Component {
-  render() {
-    const comments = this.props;
-    if (!comments.comments.length) {
-      return (
-        <div className="d-flex justify-content-center my-3">
-          <div className="spinner-border" role="status"></div>
-        </div>
-      );
-    }
-    const mappedComments = comments
-      .comments
-      .map(comment => {
-        return <Comment key={comment.id} {...comment}/>
+const CommentList = props => {
+  const PostId = 1;
+  const [commentHeader, setCommentHeader] = useState("");
+  const [commentBody, setCommentBody] = useState("");
+  const [commentEmail, setCommentEmail] = useState("");
+
+  const [commentList, setCommentList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://reactjs-9b967.firebaseio.com/comments.json")
+      .then(res => {
+        const commentData = res.data;
+        const comments = [];
+        for (const key in commentData) {
+          comments.push({
+            id: key,
+            commentHeader: commentData[key].commentHeader,
+            commentBody: commentData[key].commentBody,
+            commentEmail: commentData[key].commentEmail,
+            PostId: commentData[key].PostId
+          });
+        }
+        setCommentList(comments);
       });
-    return (
-      <div>
-        <h1>Комментарии</h1>
-        {mappedComments}
-      </div>
-    );
-  }
+  }, []);
 
-  componentDidMount() {
-    this
-      .props
-      .dispatch(fetchComments());
-  }
-}
+  const commentHeaderChangeHandler = event => {
+    setCommentHeader(event.target.value);
+  };
+  const commentBodyChangeHandler = event => {
+    setCommentBody(event.target.value);
+  };
+  const commentEmailChangeHandler = event => {
+    setCommentEmail(event.target.value);
+  };
 
-function mapStateToProps(state) {
-  return {comments: state.comments.comments}
-}
+  const commentAddHandler = () => {
+    if (commentHeader != "" && commentEmail != "" && commentBody != "") {
+      axios
+        .post("https://reactjs-9b967.firebaseio.com/comments.json", {
+          commentHeader,
+          commentEmail,
+          commentBody,
+          PostId
+        })
+        .then(res => {})
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
 
-export default connect(mapStateToProps)(CommentList);
+  const mappedCommentList = commentList.map(comment => {
+    return <Comment key={comment.id} {...comment} />;
+  });
+
+  return (
+    <div>
+      <h1>Комментарии</h1>
+      <Card className="card my-3 px-3 py-2">
+        <Form>
+          <Form.Group controlId="commentHeader">
+            <Form.Label>Заголовок</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Введите заголовок"
+              onChange={commentHeaderChangeHandler}
+              value={commentHeader}
+            />
+          </Form.Group>
+          <Form.Group controlId="commentEmail">
+            <Form.Label>E-mail</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Введите email"
+              onChange={commentEmailChangeHandler}
+              value={commentEmail}
+            />
+          </Form.Group>
+          <Form.Group controlId="commentBody">
+            <Form.Label>Комментарий</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Введите комментарий"
+              onChange={commentBodyChangeHandler}
+              value={commentBody}
+            />
+          </Form.Group>
+          <Button
+            type="submit"
+            variant="primary float-right"
+            onClick={commentAddHandler}
+          >
+            Опубликовать комментарий
+          </Button>
+        </Form>
+      </Card>
+      {mappedCommentList}
+    </div>
+  );
+};
+
+export default CommentList;
