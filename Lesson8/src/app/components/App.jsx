@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
-import Layout from '../layouts/Layout';
+import Layout from "../layouts/Layout";
 
 const App = props => {
-    return (
-      <div className="container-fluid">
-        <Route path="/" component={Layout}/>
-      </div>
-    );
-}
+  return (
+    <div className="container-fluid">
+      <Route path="/" component={Layout} />
+    </div>
+  );
+};
 
 export default App;
